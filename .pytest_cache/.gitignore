@@ -1,0 +1,4 @@
+# Created by pytest automatically.
+# .gitignore – обычно этот кэш не нужно хранить в репозитории, поэтому pytest создает .gitignore.
+__pycache__/
+*.pyc
