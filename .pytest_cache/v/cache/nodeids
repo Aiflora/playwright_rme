@@ -1,3 +1,5 @@
 [
+  "tests/prod/authorization.py::test_registration",
+  "tests/prod/authorization.py::test_registration[chromium]",
   "tests/prod/test_02.py::test_recardme_flow"
 ]

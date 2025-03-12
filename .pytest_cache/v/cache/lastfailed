@@ -1,0 +1,3 @@
+{
+  "tests/prod/authorization.py::test_registration": true
+}

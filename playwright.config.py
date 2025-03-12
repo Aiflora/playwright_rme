@@ -27,6 +27,6 @@ def run():
 def pytest_playwright_config():
     return {
         "browser": "chromium",
-        "headless": True,  # Можно изменить на False для тестирования с UI
+        "headless": False,  # Можно изменить на False для тестирования с UI
         "baseURL": BASE_URL
     }
