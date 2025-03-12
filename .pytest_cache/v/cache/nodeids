@@ -2,6 +2,9 @@
   "tests/prod/authorization.py::test_registration",
   "tests/prod/authorization.py::test_registration[chromium]",
   "tests/prod/test_02.py::test_recardme_flow",
+  "tests/prod/test_first_authorization.py::test_registration",
+  "tests/prod/test_first_authorization.py::test_registration[chromium]",
   "tests/prod/test_log_in.py::test_authorization",
+  "tests/prod/test_sign_in.py::test_example[chromium]",
   "tests/prod/test_sign_in.py::test_sign_in"
 ]

@@ -3,7 +3,7 @@ import re
 import secrets
 import string
 from faker import Faker
-from playwright.sync_api import Page, expect
+from playwright.async_api import Page, expect
 
 # Инициализация Faker для генерации случайных данных
 fake = Faker()
