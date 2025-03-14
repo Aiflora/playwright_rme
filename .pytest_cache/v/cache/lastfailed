@@ -1,5 +1,6 @@
 {
   "tests/prod/authorization.py::test_registration": true,
   "tests/prod/test_first_authorization.py::test_registration": true,
-  "tests/prod/test_sign_in.py::test_sign_in": true
+  "tests/prod/test_sign_in.py::test_sign_in": true,
+  "tests/prod/test_creat_stamp_card.py::test_example[chromium]": true
 }
