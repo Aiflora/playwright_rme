@@ -1,2 +1,2 @@
 BASE_URL = "https://www.recardme.com/"
-HEADLESS = True
+HEADLESS = False

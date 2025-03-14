@@ -1,0 +1,66 @@
+import re
+import os
+import pytest
+import random
+from playwright.sync_api import Page, expect
+from PIL import Image, ImageDraw
+
+# Папка для временных изображений
+TEMP_IMAGE_FOLDER = "temp_images"
+os.makedirs(TEMP_IMAGE_FOLDER, exist_ok=True)
+
+def generate_random_image(filename, width, height):
+    """Создает случайное изображение заданного размера."""
+    img = Image.new("RGB", (width, height), (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+    draw = ImageDraw.Draw(img)
+    draw.text((10, 10), "Test Image", fill=(255, 255, 255))
+    img_path = os.path.join(TEMP_IMAGE_FOLDER, filename)
+    img.save(img_path)
+    return img_path
+
+def test_example(page: Page) -> None:
+    # Генерация случайных изображений перед загрузкой
+    logo_path = generate_random_image("logo.png", 480, 150)
+    banner_path = generate_random_image("banner.png", 1125, 432)
+    notification_logo_path = generate_random_image("notification_logo.png", 150, 150)
+    stamp_icon_path = generate_random_image("stamp_icon.png", 150, 150)
+
+    # Открытие сайта и вход
+    page.goto("https://www.recardme.com/")
+    page.locator("label").filter(has_text="Русский").click()
+    page.get_by_role("button", name="Подтвердить").click()
+    page.get_by_role("link", name="Вход").click()
+    page.locator("#email").click()
+    page.locator("#email").fill("test_prod@gmail.com")
+    page.get_by_placeholder("Пароль").click()
+    page.get_by_placeholder("Пароль").fill("A200200052!")
+    page.get_by_role("button", name="Вход").click()
+
+    # Ожидание редиректа после входа (указать реальный URL) Ждем, пока загрузится страница после входа
+    page.wait_for_url("**/dashboard")
+    page.wait_for_load_state("domcontentloaded")  
+
+    # Ожидание загрузки кнопки "Загрузить логотип"
+    page.locator(".border-gray-200.border-dashed.text-4xl.h-24.flex-1.w-full.items-center.rounded-2xl.flex.justify-center.p-5.border-2.text-gray-200.hover\\:opacity-50.cursor-pointer").wait_for(state="visible", timeout=90000)
+    page.locator(".border-gray-200.border-dashed.text-4xl.h-24.flex-1.w-full.items-center.rounded-2xl.flex.justify-center.p-5.border-2.text-gray-200.hover\\:opacity-50.cursor-pointer").click()
+    page.locator("body").set_input_files(logo_path)
+
+    page.wait_for_selector("text=Загрузить баннер", timeout=30000)
+    assert page.locator("text=Загрузить баннер").is_visible()
+    page.get_by_text("Загрузить баннер").click(force=True)
+    page.locator("body").set_input_files(banner_path)
+
+    page.wait_for_selector("text=Логотип для уведомлений", timeout=30000)
+    assert page.locator("text=Логотип для уведомлений").is_visible()
+    page.get_by_text("Логотип для уведомлений").click(force=True)
+    page.locator("body").set_input_files(notification_logo_path)
+
+    page.wait_for_selector("text=Загрузить пользовательскую иконку штампа", timeout=30000)
+    assert page.locator("text=Загрузить пользовательскую иконку штампа").is_visible()
+    page.get_by_text("Загрузить пользовательскую иконку штампа").click(force=True)
+    page.locator("body").set_input_files(stamp_icon_path)
+
+    # Переход к следующему шагу
+    page.wait_for_selector("text=Продолжить", timeout=30000)
+    assert page.locator("text=Продолжить").is_visible()
+    page.get_by_role("button", name="Продолжить").click()

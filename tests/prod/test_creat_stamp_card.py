@@ -25,53 +25,46 @@ def test_example(page: Page) -> None:
     notification_logo_path = generate_random_image("notification_logo.png", 150, 150)
     stamp_icon_path = generate_random_image("stamp_icon.png", 150, 150)
 
-    # Открытие сайта
+    # Открытие сайта и вход
     page.goto("https://www.recardme.com/")
-    
-    # Выбор русского языка и подтверждение
-    page.locator("label").filter(has_text="Русский").locator("span").nth(1).click()
-    page.get_by_role("button", name="Подтвердить").click()
-
-    # Переход на страницу входа
-    page.locator(".w-full > .flex > .btn").click()
-    page.get_by_role("button", name="Войдите в систему с существующей учетной записью").click()
-
-    # Ввод email и пароля
-    page.wait_for_selector("#email")
+    page.locator("label").filter(has_text="English").locator("span").nth(2).click()
+    page.get_by_role("button", name="Confirm").click()
+    page.get_by_role("link", name="Sign in").click()
+    page.locator("#email").click()
     page.locator("#email").fill("test_prod@gmail.com")
+    page.get_by_placeholder("Password").click()
+    page.get_by_placeholder("Password").fill("A200200052!")
+    page.get_by_role("button", name="Sign in").click()
 
-    page.wait_for_selector("#password")
-    page.locator("#password").fill("A200200052!")
+    # Ожидание редиректа после входа (указать реальный URL) Ждем, пока загрузится страница после входа
 
-    # Вход в аккаунт
-    page.get_by_role("button", name="Вход").click()
+    page.get_by_role("link").filter(has_text=re.compile(r"^$")).nth(1).click()
+    page.get_by_role("button", name="Icon Member").click()
+    page.get_by_role("button", name="Icon Stamp", exact=True).click()
+    page.get_by_role("textbox", name="Card Name").click()
+    page.get_by_role("textbox", name="Card Name").fill("stamp")
+    page.get_by_role("button", name="Recard Me").click()
+    page.get_by_label("", exact=True).nth(2).click()
+    page.get_by_label("", exact=True).nth(2).fill("#9c8dd3")
+    page.locator("[id=\"__next\"] div").filter(has_text="Choose your card colors.Pick").nth(2).click()
+    page.get_by_role("button", name="Continue").click()
 
-    # Ожидание редиректа после входа (указать реальный URL)
-    page.wait_for_url("**/dashboard")
 
     # Ожидание загрузки кнопки "Загрузить логотип"
-    page.wait_for_selector("text=Загрузить логотип", timeout=10000)
-    assert page.locator("text=Загрузить логотип").is_visible()
-    page.get_by_text("Загрузить логотип").click(force=True)
-    page.locator("body").set_input_files(logo_path)
+    page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("div").first.click()
+    page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("input[type='file']").set_input_files(logo_path)
 
-    # Аналогично для остальных загрузок
-    page.wait_for_selector("text=Загрузить баннер", timeout=10000)
-    assert page.locator("text=Загрузить баннер").is_visible()
-    page.get_by_text("Загрузить баннер").click(force=True)
-    page.locator("body").set_input_files(banner_path)
+    page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("div").first.click()
+    page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("input[type='file']").set_input_files(banner_path)
 
-    page.wait_for_selector("text=Логотип для уведомлений", timeout=10000)
-    assert page.locator("text=Логотип для уведомлений").is_visible()
-    page.get_by_text("Логотип для уведомлений").click(force=True)
-    page.locator("body").set_input_files(notification_logo_path)
+    page.locator("label div").first.click()
+    page.locator("label div").locator("input[type='file']").set_input_files(notification_logo_path, timeout=60000)
 
-    page.wait_for_selector("text=Загрузить пользовательскую иконку штампа", timeout=10000)
-    assert page.locator("text=Загрузить пользовательскую иконку штампа").is_visible()
-    page.get_by_text("Загрузить пользовательскую иконку штампа").click(force=True)
-    page.locator("body").set_input_files(stamp_icon_path)
 
-    # Переход к следующему шагу
-    page.wait_for_selector("text=Продолжить", timeout=10000)
-    assert page.locator("text=Продолжить").is_visible()
-    page.get_by_role("button", name="Продолжить").click()
+    page.get_by_role("button", name="Continue").click()
+
+    page.locator("label div").nth(1).click()
+    page.locator("label div").locator("input[type='file']").set_input_files(stamp_icon_path)
+
+    page.get_by_role("button", name="Continue").click()
+
