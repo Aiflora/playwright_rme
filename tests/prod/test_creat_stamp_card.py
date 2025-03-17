@@ -2,6 +2,7 @@ import re
 import os
 import pytest
 import random
+import pyperclip
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
 
@@ -37,7 +38,6 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Sign in").click()
 
     # Ожидание редиректа после входа (указать реальный URL) Ждем, пока загрузится страница после входа
-
     page.get_by_role("link").filter(has_text=re.compile(r"^$")).nth(1).click()
     page.get_by_role("button", name="Icon Member").click()
     page.get_by_role("button", name="Icon Stamp", exact=True).click()
@@ -49,22 +49,49 @@ def test_example(page: Page) -> None:
     page.locator("[id=\"__next\"] div").filter(has_text="Choose your card colors.Pick").nth(2).click()
     page.get_by_role("button", name="Continue").click()
 
-
     # Ожидание загрузки кнопки "Загрузить логотип"
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("div").first.click()
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("input[type='file']").set_input_files(logo_path)
-
     page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("div").first.click()
     page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("input[type='file']").set_input_files(banner_path)
-
-    page.locator("label div").first.click()
-    page.locator("label div").locator("input[type='file']").set_input_files(notification_logo_path, timeout=60000)
-
-
+    page.locator("label").filter(has_text="This will appear as the icon").locator("div").first.click()
+    page.locator("label").filter(has_text="This will appear as the icon").locator("input[type='file']").set_input_files(notification_logo_path)
     page.get_by_role("button", name="Continue").click()
-
-    page.locator("label div").nth(1).click()
-    page.locator("label div").locator("input[type='file']").set_input_files(stamp_icon_path)
-
+    page.locator("label").filter(has_text="Upload Custom Stamp Icon").locator("div").first.click()
+    page.locator("label").filter(has_text="Upload Custom Stamp Icon").locator("input[type='file']").set_input_files(stamp_icon_path)
     page.get_by_role("button", name="Continue").click()
+    page.get_by_role("button", name="7", exact=True).click()
+    page.get_by_role("button", name="6", exact=True).click()
+    page.get_by_role("button", name="Continue").click()
+    page.locator(".w-11").first.click(force=True)
+    page.locator("label > .absolute").first.click()
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_role("button", name="Empty").first.click()
+    page.get_by_role("listitem").filter(has_text="Full Name").click()
+    page.get_by_role("button", name="Empty").first.click()
+    page.get_by_text("Gift Stamps").click()
+    page.get_by_role("button", name="Empty").click()
+    page.get_by_text("Stamps left").click()
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_role("button", name="Add").click()
+    page.locator("div").filter(has_text=re.compile(r"^TitleDescription or Link\.\.\.$")).locator("div").nth(3).click()
+    page.get_by_text("Transaction History").click()
+    page.get_by_role("textbox", name="Opening hours").click()
+    page.get_by_role("textbox", name="Opening hours").fill("tttt")
+    page.locator("button").filter(has_text=re.compile(r"^Add$")).click()
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_role("button", name="Add").click()
+    page.get_by_role("textbox", name="% discount").click()
+    page.get_by_role("textbox", name="% discount").fill("40")
+    page.get_by_role("textbox", name="Type an address or a place").click()
+    page.get_by_role("textbox", name="Type an address or a place").fill("Бишкек")
+    page.get_by_role("listitem").filter(has_text="Бишкек шаары Kyrgyzstan").locator("small").click()
+    page.locator("button").filter(has_text=re.compile(r"^Add$")).click()
+    page.get_by_role("button", name="Finish").click()
+    page.get_by_role("link", name="Go to Dashboard").click()
+    page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
+    page.wait_for_timeout(1000)
+    copied_text = pyperclip.paste()
+
+    print(f"Создана карта штампы. UUID карты: {copied_text}")
 
