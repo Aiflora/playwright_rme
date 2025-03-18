@@ -2,6 +2,7 @@
   "tests/prod/authorization.py::test_registration",
   "tests/prod/authorization.py::test_registration[chromium]",
   "tests/prod/test_02.py::test_recardme_flow",
+  "tests/prod/test_creat_member_card.py::test_example[chromium]",
   "tests/prod/test_creat_stamp_card.py::test_example[chromium]",
   "tests/prod/test_first_authorization.py::test_registration",
   "tests/prod/test_first_authorization.py::test_registration[chromium]",

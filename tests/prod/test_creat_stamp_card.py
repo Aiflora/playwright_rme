@@ -2,6 +2,7 @@ import re
 import os
 import pytest
 import random
+import time
 import pyperclip
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
@@ -52,13 +53,17 @@ def test_example(page: Page) -> None:
     # Ожидание загрузки кнопки "Загрузить логотип"
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("div").first.click()
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("input[type='file']").set_input_files(logo_path)
+    page.wait_for_timeout(1000)
     page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("div").first.click()
     page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("input[type='file']").set_input_files(banner_path)
+    page.wait_for_timeout(1000)
     page.locator("label").filter(has_text="This will appear as the icon").locator("div").first.click()
     page.locator("label").filter(has_text="This will appear as the icon").locator("input[type='file']").set_input_files(notification_logo_path)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="Continue").click()
     page.locator("label").filter(has_text="Upload Custom Stamp Icon").locator("div").first.click()
     page.locator("label").filter(has_text="Upload Custom Stamp Icon").locator("input[type='file']").set_input_files(stamp_icon_path)
+    page.wait_for_timeout(1000)
     page.get_by_role("button", name="Continue").click()
     page.get_by_role("button", name="7", exact=True).click()
     page.get_by_role("button", name="6", exact=True).click()
@@ -89,9 +94,11 @@ def test_example(page: Page) -> None:
     page.locator("button").filter(has_text=re.compile(r"^Add$")).click()
     page.get_by_role("button", name="Finish").click()
     page.get_by_role("link", name="Go to Dashboard").click()
-    page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
-    page.wait_for_timeout(1000)
+    """ 
+    page.get_by_role("button").filter(has_text=re.compile(r"^$")).dblclick()
+    page.wait_for_timeout(2000)
     copied_text = pyperclip.paste()
-
+    """ 
+    copied_text = page.get_by_role("textbox").filter(has_text=re.compile(r"^$")).input_value()
     print(f"Создана карта штампы. UUID карты: {copied_text}")
 
