@@ -3,5 +3,6 @@
   "tests/prod/test_first_authorization.py::test_registration": true,
   "tests/prod/test_sign_in.py::test_sign_in": true,
   "tests/prod/test_test.py::test_example[chromium]": true,
-  "tests/prod/test_creat_cashback_card.py::test_example[chromium]": true
+  "tests/prod/test_creat_cashback_card.py::test_example[chromium]": true,
+  "tests/prod/test_create_cashback_card.py::test_example[chromium]": true
 }
