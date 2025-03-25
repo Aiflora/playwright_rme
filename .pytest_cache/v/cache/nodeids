@@ -12,6 +12,7 @@
   "tests/prod/test_create_discount_card.py::test_example[chromium]",
   "tests/prod/test_create_gift_card.py::test_example[chromium]",
   "tests/prod/test_create_member_card.py::test_example[chromium]",
+  "tests/prod/test_create_stamp_and_cashback_card.py::test_example[chromium]",
   "tests/prod/test_create_stamp_card.py::test_example[chromium]",
   "tests/prod/test_create_subscription_card.py::test_example[chromium]",
   "tests/prod/test_first_authorization.py::test_registration",
