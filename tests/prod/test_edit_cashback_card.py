@@ -1,9 +1,9 @@
 import re
-import pytest
 import os
+import pytest
 import random
-import pyperclip
 import time
+import pyperclip
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
 
@@ -24,12 +24,11 @@ def test_example(page: Page) -> None:
     # Генерация случайных изображений перед загрузкой
     logo_path = generate_random_image("logo.png", 480, 150)
     banner_path = generate_random_image("banner.png", 1125, 432)
-    notification_logo_path = generate_random_image("notification_logo.png", 150, 150)
-    stamp_icon_path = generate_random_image("stamp_icon.png", 150, 150)
+    notification_logo_path = generate_random_image("notification_logo.png", 150, 150) 
 
-def test_example(page: Page) -> None:
+# Открытие сайта и вход
     page.goto("https://www.recardme.com/")
-    page.locator("label").filter(has_text="English").locator("span").nth(1).click()
+    page.locator("label").filter(has_text="English").locator("span").nth(2).click()
     page.get_by_role("button", name="Confirm").click()
     page.get_by_role("link", name="Sign in").click()
     page.locator("#email").click()
@@ -53,7 +52,11 @@ def test_example(page: Page) -> None:
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("div").first.click()
     page.locator("label").filter(has_text="Recommended dimensions:Rectangular: 480 x 150 pixelsSquare: 150 x 150 pixels").locator("input[type='file']").set_input_files(logo_path)
     page.get_by_text("Upload Banner").click()
+    page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("div").first.click()
+    page.locator("label").filter(has_text="Recommended dimensions:1125 x").locator("input[type='file']").set_input_files(banner_path)
     page.get_by_text("Logo for Notifications").click()
+    page.locator("label").filter(has_text="This will appear as the icon").locator("div").first.click()
+    page.locator("label").filter(has_text="This will appear as the icon").locator("input[type='file']").set_input_files(notification_logo_path)
     page.get_by_role("button", name="Full Name").click()
     page.get_by_text("Phone").click()
     page.get_by_role("button", name="Tier").click()
@@ -74,14 +77,18 @@ def test_example(page: Page) -> None:
     page.get_by_role("textbox", name="Gold").fill("First")
     page.get_by_role("textbox", name="USD").click()
     page.get_by_role("textbox", name="USD").fill("KGS")
+    """ 
+    
     page.get_by_role("button", name="add dynamic cashback").click()
     page.locator("div").filter(has_text=re.compile(r"^Percentage %start timeend timeupdate dynamic cashback$")).get_by_placeholder("5").click()
     page.locator("div").filter(has_text=re.compile(r"^Percentage %start timeend timeupdate dynamic cashback$")).get_by_placeholder("5").fill("60")
     page.locator("input[name=\"start_time\"]").click()
-    page.locator("input[name=\"start_time\"]").fill("07:00")
+    page.locator("input[name=\"start_time\"]").fill("07:00") # нужно исправить 
     page.locator("input[name=\"end_time\"]").click()
     page.locator("input[name=\"end_time\"]").fill("22:00")
     page.get_by_role("button", name="Edit").click()
+
+    """
     page.locator("div").filter(has_text=re.compile(r"^Gold10000\.0010\.00%RUB$")).get_by_role("button").nth(1).click()
     page.locator("div").filter(has_text=re.compile(r"^Customize the percentage of points deducted%Add$")).get_by_role("spinbutton").click()
     page.locator("div").filter(has_text=re.compile(r"^Customize the percentage of points deducted%Add$")).get_by_role("spinbutton").fill("100")

@@ -1,9 +1,6 @@
 import re
 import os
-import pytest
 import random
-import pyperclip
-import time
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
 
