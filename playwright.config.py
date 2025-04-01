@@ -3,6 +3,7 @@ import os
 
 # Определяем окружение (по умолчанию 'prod')
 ENV = os.getenv("TEST_ENV", "prod")
+testDir = "tests/"
 
 # Выбираем правильный URL в зависимости от окружения
 if ENV == "dev":
@@ -30,3 +31,5 @@ def pytest_playwright_config():
         "headless": False,  # Можно изменить на False для тестирования с UI
         "baseURL": BASE_URL
     }
+
+
