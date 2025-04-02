@@ -4,5 +4,7 @@
   "tests/prod/test_sign_in.py::test_sign_in": true,
   "tests/prod/test_test.py::test_example[chromium]": true,
   "tests/prod/test_creat_cashback_card.py::test_example[chromium]": true,
-  "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true
+  "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true,
+  "tests/prod/test_edit.py::test_example[chromium]": true,
+  "tests/prod/test_edit.py::test_[chromium]": true
 }

@@ -12,12 +12,4 @@
         "python.testing.pytestArgs": ["tests"],
         "python.testing.autoTestDiscoverOnSaveEnabled": true
         
-        
-        "playwright.testDir": "tests/",
-        "playwright.testMatch": "**/*.py",
-        "playwright.runTestsOnSave": true
-        
-    
-        
-    
 }
