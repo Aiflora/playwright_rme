@@ -6,5 +6,6 @@
   "tests/prod/test_creat_cashback_card.py::test_example[chromium]": true,
   "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true,
   "tests/prod/test_edit.py::test_example[chromium]": true,
-  "tests/prod/test_edit.py::test_[chromium]": true
+  "tests/prod/test_edit.py::test_[chromium]": true,
+  "tests/prod/test_edits.py::test_example[chromium]": true
 }
