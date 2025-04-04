@@ -94,3 +94,5 @@ def test_example(page: Page) -> None:
     page.get_by_role("button", name="Save").click()
     page.get_by_text("Success!").click()
     #page.get_by_role("link", name="cards Card").click()
+
+    print(f"Изменения в кешбэк карте лого поменяли.")
