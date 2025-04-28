@@ -18,8 +18,7 @@ def test_example(page: Page) -> None:
     page.get_by_placeholder("Password").click()
     page.get_by_placeholder("Password").fill("A200200052!")
     page.get_by_role("button", name="Sign in").click()
-    # page.get_by_role("link", name="cards Managers").click() 
-    # page.pause()
+
 
     nav = page.locator('nav.flex.flex-col')
     nav.hover()
@@ -27,7 +26,7 @@ def test_example(page: Page) -> None:
     link = page.locator('a[href="/ru/dashboard/managers"]')
     link.wait_for(state="visible", timeout=5000)
     link.click()
-    
+
     page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
     page.get_by_role("textbox", name="example@gmail.com").click()
     page.get_by_role("textbox", name="example@gmail.com").fill("testings@")
