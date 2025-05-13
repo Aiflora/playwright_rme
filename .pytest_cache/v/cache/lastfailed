@@ -18,5 +18,7 @@
   "tests/prod/test_create_stamp_and_cashback_card.py::test_example[chromium]": true,
   "tests/prod/test_create_stamp_card.py::test_example[chromium]": true,
   "tests/prod/test_create_subscription_card.py::test_example[chromium]": true,
-  "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true
+  "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true,
+  "tests/prod/test_create_stamp_and_discount_card.py::test_example[chromium]": true,
+  "tests/prod/test_first_authorization.py::test_registration[chromium]": true
 }
