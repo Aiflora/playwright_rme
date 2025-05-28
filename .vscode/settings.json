@@ -9,7 +9,7 @@
     
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": false,
-        "python.testing.pytestArgs": ["src/tests/prod"],
+        "python.testing.pytestArgs": ["tests/prod"],
         "python.testing.autoTestDiscoverOnSaveEnabled": true
         
 }
