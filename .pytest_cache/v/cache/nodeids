@@ -1,6 +1,7 @@
 [
   "tests/prod/test_add_manager.py::test_example[chromium]",
   "tests/prod/test_create_business_card.py::test_example[chromium]",
+  "tests/prod/test_create_cashback.py::test_example[chromium]",
   "tests/prod/test_create_cashback_card.py::test_example[chromium]",
   "tests/prod/test_create_coupon_card.py::test_example[chromium]",
   "tests/prod/test_create_discount_card.py::test_example[chromium]",

@@ -12,3 +12,14 @@
 - [Pytest](https://docs.pytest.org/) — для организации тестов
 - Python 3.7+
 
+Name: pytest
+Version: 8.3.5
+Summary: pytest: simple powerful testing with Python
+Home-page: https://docs.pytest.org/en/latest/
+Author: Holger Krekel, Bruno Oliveira, Ronny Pfannschmidt, Floris Bruynooghe, Brianna Laugher, Florian Bruhin, Others (See AUTHORS)
+Author-email: 
+License: MIT
+Location: c:\Users\Aigerim\playwright_rme\.venv\Lib\site-packages
+Requires: colorama, iniconfig, packaging, pluggy
+Required-by: pytest-asyncio, pytest-base-url, pytest-html, pytest-metadata, pytest-playwright
+
