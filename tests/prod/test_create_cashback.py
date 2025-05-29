@@ -130,10 +130,11 @@ def test_example(page_with_video, request) -> None:
     page.get_by_role("heading", name="Card Cashback").click()
     page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
 
-    copied_text = page.get_by_role("textbox").filter(has_text=re.compile(r"^$")).input_value()
+    page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()  # Нажать на кнопку "копировать"
+    page.wait_for_timeout(500)  # Подождать, пока скопируется
+    copied_text = pyperclip.paste()
     print(f"Создана карта кешбек. UUID карты: {copied_text}")
 
     request.node.test_info = {
-        "uuid": copied_text,
-        "message": "Карта кешбек успешно создана."
+    "uuid": copied_text, "message": "Карта кешбек успешно создана!"
     }

@@ -154,6 +154,9 @@ response = requests.post(
                             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendVideo",
                             data={"chat_id": CHAT_ID, "caption": caption},
                             files={"video": f}
+
+https://api.telegram.org/bot7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU/getUpdates узнать chat id                           
+
 "chat": {
             "id": -1002099866066,
             "title": "Recardme Core Team",
@@ -183,7 +186,7 @@ VIDEO_DIR = "videos"
 os.makedirs(VIDEO_DIR, exist_ok=True)
 
 TELEGRAM_TOKEN = "7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU"
-CHAT_ID = "-4527522890"  # -1002099866066/11392 - bag report group HANSE LANDA https://t.me/c/2099866066/1  -4527522890 -Bugs rme group -1002099866066  https://t.me/c/2099866066/11392
+CHAT_ID = "-1002099866066/11392"  # -1002099866066/11392 - bag report group HANSE LANDA https://t.me/c/2099866066/1  -4527522890 -Bugs rme group -1002099866066  https://t.me/c/2099866066/11392
 
 
 # Хук для отслеживания статуса теста
@@ -247,7 +250,7 @@ def page_with_video(request):
                             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendVideo",
                         data={
                             "chat_id": CHAT_ID,
-                            #"message_thread_id": 11392,  # 🎯 указываем нужный раздел группы
+                            "message_thread_id": 11392,  # 🎯 указываем нужный раздел группы
                             "caption": caption
                         },
                         files={"video": f}
