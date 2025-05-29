@@ -3,7 +3,8 @@ import os
 import pytest
 import random
 import pyperclip
-import time
+import requests
+import pyperclip
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
 
@@ -20,9 +21,9 @@ def generate_random_image(filename, width, height):
     img.save(img_path)
     return img_path
 
-def test_example(page_with_video) -> None:
+def test_example(page_with_video, request) -> None:
     page = page_with_video
-    # Генерация случайных изображений перед загрузкой
+    # Генерация случайных изображений перед загрузкой 
     logo_path = generate_random_image("logo.png", 480, 150)
     banner_path = generate_random_image("banner.png", 1125, 432)
     notification_logo_path = generate_random_image("notification_logo.png", 150, 150)
@@ -122,9 +123,17 @@ def test_example(page_with_video) -> None:
     page.get_by_role("button", name="Continue").click()
 
     page.get_by_role("button", name="Finish").click()
-    page.get_by_role("link", name="Go to Dashboard").click()
+    dashboard_link = page.get_by_role("link", name="Go to Dashboard")
+    dashboard_link.wait_for(state="visible", timeout=60000)
+    dashboard_link.click()
+
     page.get_by_role("heading", name="Card Cashback").click()
     page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
 
     copied_text = page.get_by_role("textbox").filter(has_text=re.compile(r"^$")).input_value()
     print(f"Создана карта кешбек. UUID карты: {copied_text}")
+
+    request.node.test_info = {
+        "uuid": copied_text,
+        "message": "Карта кешбек успешно создана."
+    }
