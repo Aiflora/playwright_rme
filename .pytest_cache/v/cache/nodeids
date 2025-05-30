@@ -18,6 +18,7 @@
   "tests/prod/test_edit_cashback_card.py::test_example[chromium]",
   "tests/prod/test_edit_stamp_card.py::test_example[chromium]",
   "tests/prod/test_edits.py::test_example[chromium]",
+  "tests/prod/test_first_authorization.py::test_first_authorization",
   "tests/prod/test_first_authorization.py::test_registration[chromium]",
   "tests/prod/test_hope.py::test_example[chromium]",
   "tests/prod/test_sign_in.py::test_example[chromium]",
