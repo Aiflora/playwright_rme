@@ -20,7 +20,7 @@ def generate_random_image(filename, width, height):
     img.save(img_path)
     return img_path
 
-def test_example(page_with_video, request) -> None:
+def test_create_cashback(page_with_video, request) -> None:
     page = page_with_video
     # Генерация случайных изображений перед загрузкой 
     logo_path = generate_random_image("logo.png", 480, 150)

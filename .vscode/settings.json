@@ -10,6 +10,9 @@
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": false,
         "python.testing.pytestArgs": ["tests/prod"],
-        "python.testing.autoTestDiscoverOnSaveEnabled": true
+        "python.testing.autoTestDiscoverOnSaveEnabled": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "notebook.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
         
 }

@@ -1,10 +1,10 @@
-"""   
+"""
 response = requests.post(
                             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendVideo",
                             data={"chat_id": CHAT_ID, "caption": caption},
                             files={"video": f}
 
-https://api.telegram.org/bot7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU/getUpdates узнать chat id                           
+https://api.telegram.org/bot7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU/getUpdates узнать chat id
 
 "chat": {
             "id": -1002099866066,
@@ -24,18 +24,20 @@ https://api.telegram.org/bot7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU/getUp
         "is_topic_message": true                      )
 
 """
+
 import os
 import pytest
 import time
 import datetime
 import requests
 from playwright.sync_api import sync_playwright
+from screeninfo import get_monitors
 
 VIDEO_DIR = "videos"
 os.makedirs(VIDEO_DIR, exist_ok=True)
 
 TELEGRAM_TOKEN = "7606399616:AAH8KmbIV46OZtQYSYy1knVTQYD7J2BiRcU"
-CHAT_ID = "-1002099866066/11392"  # -1002099866066/11392 - bag report group HANSE LANDA https://t.me/c/2099866066/1  -4527522890 -Bugs rme group -1002099866066  https://t.me/c/2099866066/11392
+CHAT_ID = "-4527522890"  # -1002099866066/11392 - bag report group HANSE LANDA https://t.me/c/2099866066/1  -4527522890 -Bugs rme group -1002099866066  https://t.me/c/2099866066/11392
 
 
 # Хук для отслеживания статуса теста
@@ -49,16 +51,24 @@ def pytest_runtest_makereport(item, call):
     if result.when == "call":
         item.test_info["status"] = "passed" if result.passed else "failed"
 
+
 @pytest.fixture(scope="function")
 def page_with_video(request):
+    monitor = get_monitors()[0]
+    width = monitor.width
+    height = monitor.height
     test_name = request.node.name
     test_file = os.path.basename(request.node.location[0]).replace(".py", "")
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename_base = f"{test_file}_{timestamp}"
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        context = browser.new_context(record_video_dir=VIDEO_DIR)
+        browser = p.chromium.launch(
+            headless=False, args=[f"--window-size={width},{height}"]
+        )
+        context = browser.new_context(
+            viewport={"width": width, "height": height}, record_video_dir=VIDEO_DIR
+        )
         page = context.new_page()
 
         yield page
@@ -87,8 +97,7 @@ def page_with_video(request):
             status = test_info.get("status", "unknown")
             status_icon = "✅" if status == "passed" else "❌"
             caption = (
-                f"{status_icon} {status.upper()} - {test_file}\n"
-                f"{message}\nUUID: {uuid}"
+                f"{status_icon} {status.upper()} - {test_file}\n{message}\nUUID: {uuid}"
             )
 
             for i in range(10):
@@ -97,22 +106,26 @@ def page_with_video(request):
                     with open(video_path, "rb") as f:
                         response = requests.post(
                             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendVideo",
-                        data={
-                            "chat_id": CHAT_ID,
-                            "message_thread_id": 11392,  # указываем нужный раздел группы
-                            "caption": caption
-                        },
-                        files={"video": f}
+                            data={
+                                "chat_id": CHAT_ID,
+                                # "message_thread_id": 11392,  # указываем нужный раздел группы
+                                "caption": caption,
+                            },
+                            files={"video": f},
                         )
                         if response.ok:
-                            print("✅ Видео успешно отправлено в Telegram. Удаляю файл.")
+                            print(
+                                "✅ Видео успешно отправлено в Telegram. Удаляю файл."
+                            )
                             os.remove(video_path)
                         else:
-                            print(f"⚠️ Ошибка при отправке видео в Telegram: {response.status_code} — {response.text}")
+                            print(
+                                f"⚠️ Ошибка при отправке видео в Telegram: {response.status_code} — {response.text}"
+                            )
                     print("📤 Ответ Telegram:", response.status_code, response.text)
                     break
                 else:
-                    print(f"⏳ Ожидаем файл... попытка {i+1}")
+                    print(f"⏳ Ожидаем файл... попытка {i + 1}")
                     time.sleep(1)
             else:
                 print("❌ Видео не появилось после ожидания.")
