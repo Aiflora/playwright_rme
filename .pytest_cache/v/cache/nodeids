@@ -6,6 +6,8 @@
   "tests/prod/test_create_cashback_card.py::test_create_cashback",
   "tests/prod/test_create_cashback_card.py::test_example",
   "tests/prod/test_create_cashback_card.py::test_example[chromium]",
+  "tests/prod/test_create_coupon_card.py::test_create_stamp",
+  "tests/prod/test_create_coupon_card.py::test_create_stamp[chromium]",
   "tests/prod/test_create_coupon_card.py::test_example[chromium]",
   "tests/prod/test_create_discount_card.py::test_create_cashback",
   "tests/prod/test_create_discount_card.py::test_example[chromium]",
