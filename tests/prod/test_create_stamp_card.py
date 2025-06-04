@@ -182,7 +182,4 @@ def test_create_stamp(page_with_video, request) -> None:
     copied_text = pyperclip.paste()
     print(f"Создана карта штампы. UUID карты: {copied_text}")
 
-    request.node.test_info = {
-        "uuid": copied_text,
-        "message": "Карта штампы успешно создана!",
-    }
+    request.node.test_info = {"message": f"Создана карта штампы!\nUUID: {copied_text}"}
