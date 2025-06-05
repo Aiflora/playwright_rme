@@ -29,5 +29,6 @@
   "tests/prod/test_create_coupon_card.py::test_create_stamp": true,
   "tests/prod/test_create_coupon_card.py::test_create_stamp[chromium]": true,
   "tests/prod/test_create_gift_card.py::test_create_gift": true,
-  "tests/prod/test_create_subscription_card.py::test_create_subscription": true
+  "tests/prod/test_create_subscription_card.py::test_create_subscription": true,
+  "tests/prod/test_create_member_card.py::test_create_subscription": true
 }
