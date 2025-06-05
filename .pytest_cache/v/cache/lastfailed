@@ -27,5 +27,6 @@
   "tests/prod/test_create_discount_card.py::test_create_cashback": true,
   "tests/prod/test_sign_in.py::test_sign_in": true,
   "tests/prod/test_create_coupon_card.py::test_create_stamp": true,
-  "tests/prod/test_create_coupon_card.py::test_create_stamp[chromium]": true
+  "tests/prod/test_create_coupon_card.py::test_create_stamp[chromium]": true,
+  "tests/prod/test_create_gift_card.py::test_create_gift": true
 }

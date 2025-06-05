@@ -11,6 +11,7 @@
   "tests/prod/test_create_coupon_card.py::test_example[chromium]",
   "tests/prod/test_create_discount_card.py::test_create_cashback",
   "tests/prod/test_create_discount_card.py::test_example[chromium]",
+  "tests/prod/test_create_gift_card.py::test_create_gift",
   "tests/prod/test_create_gift_card.py::test_example[chromium]",
   "tests/prod/test_create_lottery_card.py::test_example[chromium]",
   "tests/prod/test_create_member_card.py::test_example[chromium]",

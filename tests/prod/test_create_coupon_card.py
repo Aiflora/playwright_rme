@@ -23,7 +23,7 @@ def generate_random_image(filename, width, height):
     return img_path
 
 
-def test_create_stamp(page_with_video, request) -> None:
+def test_create_coupon(page_with_video, request) -> None:
     page = page_with_video
     # Генерация случайных изображений перед загрузкой
     logo_path = generate_random_image("logo.png", 480, 150)
