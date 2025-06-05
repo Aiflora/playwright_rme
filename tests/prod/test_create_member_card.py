@@ -146,8 +146,8 @@ def test_create_member(page_with_video, request) -> None:
     ).click()  # Нажать на кнопку "копировать"
     page.wait_for_timeout(500)  # Подождать, пока скопируется
     copied_text = pyperclip.paste()
-    print(f"Создана карта подписка. UUID карты: {copied_text}")
+    print(f"Создана членская карта. UUID карты: {copied_text}")
 
     request.node.test_info = {
-        "message": f"Создана карта подписка!\nUUID: {copied_text}"
+        "message": f"Создана членская карта!\nUUID: {copied_text}"
     }
