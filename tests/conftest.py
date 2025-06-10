@@ -29,6 +29,7 @@ import os
 import pytest
 import time
 import datetime
+import pylance
 import requests
 from playwright.sync_api import sync_playwright
 from screeninfo import get_monitors
