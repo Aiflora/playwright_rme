@@ -1,5 +1,7 @@
 [
   "tests/prod/test_add_manager.py::test_example[chromium]",
+  "tests/prod/test_create_business_card.py::test_create_business",
+  "tests/prod/test_create_business_card.py::test_create_stamp",
   "tests/prod/test_create_business_card.py::test_example[chromium]",
   "tests/prod/test_create_cashback.py::test_example",
   "tests/prod/test_create_cashback.py::test_example[chromium]",
@@ -14,6 +16,7 @@
   "tests/prod/test_create_discount_card.py::test_example[chromium]",
   "tests/prod/test_create_gift_card.py::test_create_gift",
   "tests/prod/test_create_gift_card.py::test_example[chromium]",
+  "tests/prod/test_create_lottery_card.py::test_create_stamp",
   "tests/prod/test_create_lottery_card.py::test_example[chromium]",
   "tests/prod/test_create_member_card.py::test_create_member",
   "tests/prod/test_create_member_card.py::test_create_subscription",

@@ -20,10 +20,9 @@
   "tests/prod/test_edit_cashback_card.py::test_example[chromium]": true,
   "tests/prod/test_create_stamp_and_discount_card.py::test_example[chromium]": true,
   "tests/prod/test_sign_in.py::test_example[chromium]": true,
-  "tests/prod/test_first_authorization.py::test_first_authorization": true,
   "tests/prod/test_create_cashback_card.py::test_example": true,
   "tests/prod/test_create_coupon_card.py::test_create_stamp": true,
   "tests/prod/test_create_coupon_card.py::test_create_stamp[chromium]": true,
   "tests/prod/test_create_member_card.py::test_create_subscription": true,
-  "tests/prod/test_first_authorization.py": true
+  "tests/prod/test_create_business_card.py::test_create_stamp": true
 }
