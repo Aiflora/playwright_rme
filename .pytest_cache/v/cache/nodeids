@@ -1,4 +1,5 @@
 [
+  "tests/prod/test_add_manager.py::test_create_manager",
   "tests/prod/test_add_manager.py::test_example[chromium]",
   "tests/prod/test_create_business_card.py::test_create_business",
   "tests/prod/test_create_business_card.py::test_create_stamp",
