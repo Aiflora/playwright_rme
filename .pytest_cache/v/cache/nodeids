@@ -21,6 +21,7 @@
   "tests/prod/test_create_member_card.py::test_create_member",
   "tests/prod/test_create_member_card.py::test_create_subscription",
   "tests/prod/test_create_member_card.py::test_example[chromium]",
+  "tests/prod/test_create_stamp_and_cashback_card.py::test_create_business",
   "tests/prod/test_create_stamp_and_cashback_card.py::test_example[chromium]",
   "tests/prod/test_create_stamp_and_discount_card.py::test_example[chromium]",
   "tests/prod/test_create_stamp_card.py::test_create_stamp",

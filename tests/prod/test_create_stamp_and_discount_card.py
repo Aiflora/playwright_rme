@@ -1,3 +1,4 @@
+"""
 import re
 import os
 import pytest
@@ -12,7 +13,7 @@ TEMP_IMAGE_FOLDER = "temp_images"
 os.makedirs(TEMP_IMAGE_FOLDER, exist_ok=True)
 
 def generate_random_image(filename, width, height):
-    """Создает случайное изображение заданного размера."""
+    Создает случайное изображение заданного размера.
     img = Image.new("RGB", (width, height), (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
     draw = ImageDraw.Draw(img)
     draw.text((10, 10), "Test Image", fill=(255, 255, 255))
@@ -120,3 +121,4 @@ def test_example(page: Page) -> None:
 
     copied_text = page.get_by_role("textbox").filter(has_text=re.compile(r"^$")).input_value()
     print(f"Создана карта штампы и скидка. UUID карты: {copied_text}")
+"""
