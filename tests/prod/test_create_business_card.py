@@ -48,7 +48,7 @@ def test_create_business(page_with_video, request) -> None:
     page.get_by_role("button", name="Recard Me").click()
 
     page.get_by_label("", exact=True).nth(2).click()
-    page.get_by_label("", exact=True).nth(2).fill("#A6A821")
+    page.get_by_label("", exact=True).nth(2).fill("#000000")
     page.locator('[id="__next"] div').filter(
         has_text="Choose your card colors.Pick"
     ).nth(2).click()

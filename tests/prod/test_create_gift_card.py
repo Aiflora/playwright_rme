@@ -219,8 +219,8 @@ def test_create_gift(page_with_video, request) -> None:
     page.get_by_role("button", name="Empty").first.click()
     page.get_by_text("Gift card").click()
     page.get_by_role("button", name="Empty").click()
-    page.get_by_text("Custom", exact=True).click()
-    page.get_by_role("button", name="Custom").click()
+    # page.get_by_text("Custom", exact=True).click()
+    # page.get_by_role("button", name="Flowers").click()
     page.get_by_role("listitem").filter(has_text="Flowers").click()
     page.get_by_role("button", name="Continue").click()
 

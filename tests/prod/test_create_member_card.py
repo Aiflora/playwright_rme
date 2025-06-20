@@ -106,8 +106,8 @@ def test_create_member(page_with_video, request) -> None:
     page.get_by_role("button", name="Empty").first.click()
     page.get_by_text("Birthday", exact=True).click()
     page.get_by_role("button", name="Empty").click()
-    page.get_by_text("Custom", exact=True).click()
-    page.get_by_role("button", name="Custom").click()
+    # page.get_by_text("Custom", exact=True).click()
+    # page.get_by_role("button", name="Custom").click()
     page.get_by_role("listitem").filter(has_text="number").click()
     page.get_by_role("button", name="Continue").click()
 
