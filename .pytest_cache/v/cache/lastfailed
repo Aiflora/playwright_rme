@@ -38,5 +38,10 @@
   "tests/prod/test_create_discount_card.py::test_create_cashback": true,
   "tests/prod/test_create_coupon_card.py::test_create_coupon": true,
   "tests/prod/test_create_cashback_card.py::test_create_cashback": true,
-  "tests/prod/test_create_business_card.py::test_create_business": true
+  "tests/prod/test_create_business_card.py::test_create_business": true,
+  "tests/prod/test_create_stamp_card.py": true,
+  "tests/prod/test_create_member_card.py": true,
+  "tests/prod/test_create_gift_card.py": true,
+  "tests/prod/test_create_business_card.py": true,
+  "tests/prod/test_add_manager.py": true
 }

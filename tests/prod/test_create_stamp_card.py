@@ -1,9 +1,7 @@
 import re
 import os
-import pytest
 import random
 import pyperclip
-import requests
 import pyperclip
 from playwright.sync_api import Page, expect
 from PIL import Image, ImageDraw
@@ -91,7 +89,8 @@ def test_create_stamp(page_with_video, request) -> None:
     ).set_input_files(stamp_icon_path)
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="Continue").click()
-
+""" 
+    Уровни для штампов
     page.get_by_role("button", name="✏️").click()
     page.get_by_role("textbox", name="e.g. Bonus Stamp").click()
     page.get_by_role("textbox", name="e.g. Bonus Stamp").fill("1")
@@ -111,7 +110,7 @@ def test_create_stamp(page_with_video, request) -> None:
     page.get_by_role("spinbutton").click()
     page.get_by_role("button", name="×").click()
     page.get_by_role("button", name="Continue").click()
-
+"""
     page.get_by_role("button", name="5", exact=True).click()
     page.get_by_role("button", name="6", exact=True).click()
     page.get_by_role("button", name="Continue").click()

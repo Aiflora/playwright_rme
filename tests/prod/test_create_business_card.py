@@ -2,7 +2,7 @@ import re
 import os
 import random
 import pyperclip
-from playwright.sync_api import Page, expect
+from playwright.sync_api
 from PIL import Image, ImageDraw
 
 TEMP_IMAGE_FOLDER = "temp_images"  # Папка для временных изображений
