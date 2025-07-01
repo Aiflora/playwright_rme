@@ -43,5 +43,6 @@
   "tests/prod/test_create_member_card.py": true,
   "tests/prod/test_create_gift_card.py": true,
   "tests/prod/test_create_business_card.py": true,
-  "tests/prod/test_add_manager.py": true
+  "tests/prod/test_add_manager.py": true,
+  "tests/prod/test_create_cashback_card.py": true
 }
